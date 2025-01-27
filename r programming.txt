@@ -1,0 +1,18 @@
+outer_function <- function(x) {
+  y <- 5  # Variable in the outer function's environment
+  
+  # Inner function (closure)
+  inner_function <- function() {
+    z <- x + y  # Accessing both x (from outer) and y (from outer)
+    return(z)
+  }
+  
+  return(inner_function)  # Returning the inner function
+}
+
+# Create an instance of the inner function
+my_function <- outer_function(10)
+
+# Call the inner function, which still has access to 'x' and 'y' from the outer environment
+result <- my_function() 
+print(result)  # Output will be 15 (10 from 'x' + 5 from 'y')
